@@ -8,7 +8,14 @@ npm install -S @feizheng/singleton
 
 ## usage
 ```js
-import boilerplateNodePackage from '@feizheng/singleton';
+import Singleton from '@feizheng/singleton';
 
-// code goes here
+class A extends Singleton {
+  get() {
+    console.log('get a!');
+  }
+  set() {
+    console.log('set a!');
+  }
+}
 ```
