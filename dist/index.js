@@ -3,7 +3,7 @@
  * description: Es6 singleton class.
  * url: https://github.com/afeiship/singleton
  * version: 1.0.0
- * date: 2020-03-20 21:16:19
+ * date: 2020-03-20 21:16:34
  * license: MIT
  */
 
