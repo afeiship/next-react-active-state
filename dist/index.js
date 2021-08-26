@@ -2,8 +2,8 @@
  * name: @jswork/next-react-active-state
  * description: Active state special for react based on next-active-state.
  * homepage: https://github.com/afeiship/next-react-active-state
- * version: 1.0.1
- * date: 2021-08-26 09:12:25
+ * version: 1.0.2
+ * date: 2021-08-26 13:02:59
  * license: MIT
  */
 
@@ -14,6 +14,7 @@
   var nxEventValue = nx.eventValue || require('@jswork/next-event-value');
   var defualts = { callback: nx.noop, eventValue: nxEventValue };
   var FUNC = 'function';
+  var UNDEF = 'undefind';
 
   var NxReactActiveState = nx.declare('nx.ReactActiveState', {
     extends: NxActiveState,
@@ -31,8 +32,9 @@
           state: state,
           sync: function (inPath) {
             return function (inEvent) {
+              var path = typeof inPath === UNDEF ? inEvent.target.name : inPath;
               var value = options.eventValue(inEvent);
-              nx.set(state, inPath, value);
+              nx.set(state, path, value);
             };
           }
         };
