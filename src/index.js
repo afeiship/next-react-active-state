@@ -5,7 +5,7 @@
   var nxEventValue = nx.eventValue || require('@jswork/next-event-value');
   var defualts = { callback: nx.noop, eventValue: nxEventValue };
   var FUNC = 'function';
-  var UNDEF = 'undefind';
+  var UNDEF = 'undefined';
 
   var NxReactActiveState = nx.declare('nx.ReactActiveState', {
     extends: NxActiveState,
