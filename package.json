@@ -41,5 +41,14 @@
   "dependencies": {
     "@jswork/next-active-state": "^1.0.6",
     "@jswork/next-event-value": "^1.0.1"
-  }
+  },
+  "keywords": [
+    "next",
+    "react",
+    "active",
+    "state",
+    "redux",
+    "context",
+    "mobx"
+  ]
 }
