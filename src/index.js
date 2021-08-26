@@ -13,10 +13,12 @@
         var args = typeof inOptions === FUNC ? { callback: inOptions } : inOptions;
         var options = nx.mix(null, defualts, args);
         var instance = new this(inData);
+        var cloned = instance.to();
         var state = instance.state;
         instance.one('change', options.callback);
 
         return {
+          cloned: cloned,
           state: state,
           sync: function (inPath) {
             return function (inEvent) {
