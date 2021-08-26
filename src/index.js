@@ -5,6 +5,7 @@
   var nxEventValue = nx.eventValue || require('@jswork/next-event-value');
   var defualts = { callback: nx.noop, eventValue: nxEventValue };
   var FUNC = 'function';
+  var UNDEF = 'undefind';
 
   var NxReactActiveState = nx.declare('nx.ReactActiveState', {
     extends: NxActiveState,
@@ -22,8 +23,9 @@
           state: state,
           sync: function (inPath) {
             return function (inEvent) {
+              var path = typeof inPath === UNDEF ? inEvent.target.name : inPath;
               var value = options.eventValue(inEvent);
-              nx.set(state, inPath, value);
+              nx.set(state, path, value);
             };
           }
         };

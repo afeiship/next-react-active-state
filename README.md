@@ -35,6 +35,10 @@ const { state, sync, cloned } = NxReactActiveState.build({}, ()=>{
     <label htmlFor="email"> email: </label>
     <input type="text" name="email" onChange={sync('email')}/>
   </div>
+  <div className="row">
+    <label htmlFor="address"> email: </label>
+    <input type="text" name="formData[address]" onChange={sync()}/>
+  </div>
 </form>
 ```
 
