@@ -9,5 +9,16 @@ build
 gulpfile.js
 
 .editorconfig
-.npmrc
-.prettoerrc
+.prettierrc
+Gemfile
+jest.config.js
+LICENSE.txt
+Rakefile
+.vscode
+.babelrc
+.release-it.json
+docs
+
+# vscode localhistory
+.history
+jest.setup.js

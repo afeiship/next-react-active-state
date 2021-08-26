@@ -2,17 +2,21 @@
   'use strict';
 
   const gulp = require('gulp');
+  const saveLicense = require('uglify-save-license');
   const $ = require('gulp-load-plugins')({
-    pattern: ['gulp-*', 'gulp.*', 'del', '@feizheng/gulp-*']
+    pattern: ['gulp-*', 'gulp.*', 'del', '@jswork/gulp-*']
   });
 
   gulp.task('scripts', function() {
     return gulp
       .src('src/*.js')
-      .pipe($.babel())
-      .pipe($.uglify())
-      .pipe($.feizheng.pkgHeader())
+      // .pipe($.babel())
+      .pipe($.jswork.pkgHeader())
       .pipe(gulp.dest('dist'))
-      .pipe($.size({ title: '[ size ]:' }));
+      .pipe($.size({ title: '[ default size ]:' }))
+      .pipe($.uglify({ output: { comments: saveLicense } }))
+      .pipe($.rename({ extname: '.min.js' }))
+      .pipe(gulp.dest('dist'))
+      .pipe($.size({ title: '[ minimize size ]:' }));
   });
 })();
