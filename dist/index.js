@@ -2,8 +2,8 @@
  * name: @jswork/next-react-active-state
  * description: Active state special for react based on next-active-state.
  * homepage: https://github.com/afeiship/next-react-active-state
- * version: 1.0.12
- * date: 2021-08-30 22:41:54
+ * version: 1.0.13
+ * date: 2021-08-30 23:13:19
  * license: MIT
  */
 
@@ -40,12 +40,12 @@
           },
           sync: function (inPath) {
             var hasPath = typeof inPath === UNDEF;
-            var hasCache = hasPath && typeof FN_CACHE[path] === FUNC;
+            var hasCache = hasPath && typeof FN_CACHE[inPath] === FUNC;
             var fn;
             if (hasCache) {
-              fn = FN_CACHE[path];
+              fn = FN_CACHE[inPath];
             } else {
-              fn = FN_CACHE[path] = function (inEvent) {
+              fn = FN_CACHE[inPath] = function (inEvent) {
                 var path = hasPath ? nxGet2get(inEvent, NAME_PATHS, 'value') : inPath;
                 var value = options.eventValue(inEvent);
                 nx.set(state, path, value);

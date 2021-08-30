@@ -18,6 +18,7 @@
         var instance = new this(inData);
         var cloned = instance.get();
         var state = instance.state;
+        var FN_CACHE = {};
         instance.one('change', options.callback);
 
         return {
@@ -29,11 +30,19 @@
             return nx.get(target, inPath, inDefault);
           },
           sync: function (inPath) {
-            return function (inEvent) {
-              var path = typeof inPath === UNDEF ? nxGet2get(inEvent, NAME_PATHS, 'value') : inPath;
-              var value = options.eventValue(inEvent);
-              nx.set(state, path, value);
-            };
+            var hasPath = typeof inPath === UNDEF;
+            var hasCache = hasPath && typeof FN_CACHE[inPath] === FUNC;
+            var fn;
+            if (hasCache) {
+              fn = FN_CACHE[inPath];
+            } else {
+              fn = FN_CACHE[inPath] = function (inEvent) {
+                var path = hasPath ? nxGet2get(inEvent, NAME_PATHS, 'value') : inPath;
+                var value = options.eventValue(inEvent);
+                nx.set(state, path, value);
+              };
+            }
+            return fn;
           }
         };
       }
