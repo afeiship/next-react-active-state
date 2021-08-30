@@ -2,8 +2,8 @@
  * name: @jswork/next-react-active-state
  * description: Active state special for react based on next-active-state.
  * homepage: https://github.com/afeiship/next-react-active-state
- * version: 1.0.11
- * date: 2021-08-30 22:37:44
+ * version: 1.0.12
+ * date: 2021-08-30 22:41:54
  * license: MIT
  */
 
