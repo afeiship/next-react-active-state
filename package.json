@@ -39,7 +39,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/next-active-state": "^1.0.7",
+    "@jswork/next-active-state": "^1.0.8",
     "@jswork/next-event-value": "^1.0.1",
     "@jswork/next-get2get": "^1.0.0"
   },
