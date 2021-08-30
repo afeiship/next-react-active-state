@@ -16,14 +16,14 @@
         var args = typeof inOptions === FUNC ? { callback: inOptions } : inOptions;
         var options = nx.mix(null, defualts, args);
         var instance = new this(inData);
-        var cloned = instance.to();
+        var cloned = instance.get();
         var state = instance.state;
         instance.one('change', options.callback);
 
         return {
           cloned: cloned,
           state: state,
-          get: () => instance.to(),
+          get: () => instance.get(),
           sync: function (inPath) {
             return function (inEvent) {
               var path = typeof inPath === UNDEF ? nxGet2get(inEvent, NAME_PATHS, 'value') : inPath;
