@@ -22,9 +22,15 @@ import NxReactActiveState from '@jswork/next-react-active-state';
 import useForceUpdate from '@jswork/use-force-update';
 
 const forceUpdate = useForceUpdate();
-const { state, sync, cloned } = NxReactActiveState.build({}, ()=>{
-  forceUpdate();
-});
+const {
+  current: { state, sync },
+} = useRef(
+  NxReactActiveState.build({}, () => {
+    console.log('changed main:', state);
+    forceUpdate();
+  })
+);
+
 
 <form>
   <div className="row">
