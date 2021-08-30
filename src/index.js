@@ -23,8 +23,8 @@
         return {
           cloned: cloned,
           state: state,
-          touched: instance.touched,
-          reset: instance.reset,
+          touched: () => instance.touched(),
+          reset: () => instance.reset(),
           get: (inPath, inDefault) => {
             var target = instance.get();
             return nx.get(target, inPath, inDefault);
