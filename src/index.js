@@ -23,7 +23,10 @@
         return {
           cloned: cloned,
           state: state,
-          get: () => instance.get(),
+          get: (inPath, inDefault) => {
+            var target = instance.get();
+            return nx.get(target, inPath, inDefault);
+          },
           sync: function (inPath) {
             return function (inEvent) {
               var path = typeof inPath === UNDEF ? nxGet2get(inEvent, NAME_PATHS, 'value') : inPath;

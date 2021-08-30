@@ -3,7 +3,7 @@
  * description: Active state special for react based on next-active-state.
  * homepage: https://github.com/afeiship/next-react-active-state
  * version: 1.0.6
- * date: 2021-08-30 11:43:10
+ * date: 2021-08-30 13:00:42
  * license: MIT
  */
 
@@ -32,7 +32,10 @@
         return {
           cloned: cloned,
           state: state,
-          get: () => instance.get(),
+          get: (inPath, inDefault) => {
+            var target = instance.get();
+            return nx.get(target, inPath, inDefault);
+          },
           sync: function (inPath) {
             return function (inEvent) {
               var path = typeof inPath === UNDEF ? nxGet2get(inEvent, NAME_PATHS, 'value') : inPath;
