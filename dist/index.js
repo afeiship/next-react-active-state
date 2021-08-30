@@ -2,8 +2,8 @@
  * name: @jswork/next-react-active-state
  * description: Active state special for react based on next-active-state.
  * homepage: https://github.com/afeiship/next-react-active-state
- * version: 1.0.9
- * date: 2021-08-30 17:48:27
+ * version: 1.0.10
+ * date: 2021-08-30 18:00:17
  * license: MIT
  */
 
@@ -32,8 +32,8 @@
         return {
           cloned: cloned,
           state: state,
-          touched: instance.touched,
-          reset: instance.reset,
+          touched: () => instance.touched(),
+          reset: () => instance.reset(),
           get: (inPath, inDefault) => {
             var target = instance.get();
             return nx.get(target, inPath, inDefault);
