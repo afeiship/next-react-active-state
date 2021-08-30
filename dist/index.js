@@ -3,7 +3,7 @@
  * description: Active state special for react based on next-active-state.
  * homepage: https://github.com/afeiship/next-react-active-state
  * version: 1.0.10
- * date: 2021-08-30 18:00:17
+ * date: 2021-08-30 21:28:14
  * license: MIT
  */
 
@@ -13,7 +13,7 @@
   var NxActiveState = nx.ActiveState || require('@jswork/next-active-state');
   var nxEventValue = nx.eventValue || require('@jswork/next-event-value');
   var nxGet2get = nx.get2get || require('@jswork/next-get2get');
-  var defualts = { callback: nx.noop, eventValue: nxEventValue };
+  var defaults = { callback: nx.noop, eventValue: nxEventValue };
   var NAME_PATHS = ['target.name', 'dataset.name'];
   var FUNC = 'function';
   var UNDEF = 'undefined';
@@ -23,17 +23,16 @@
     statics: nx.mix(NxActiveState.statics, {
       build: function (inData, inOptions) {
         var args = typeof inOptions === FUNC ? { callback: inOptions } : inOptions;
-        var options = nx.mix(null, defualts, args);
+        var options = nx.mix(null, defaults, args);
         var instance = new this(inData);
         var cloned = instance.get();
         var state = instance.state;
         instance.one('change', options.callback);
 
         return {
+          $: instance,
           cloned: cloned,
           state: state,
-          touched: () => instance.touched(),
-          reset: () => instance.reset(),
           get: (inPath, inDefault) => {
             var target = instance.get();
             return nx.get(target, inPath, inDefault);
