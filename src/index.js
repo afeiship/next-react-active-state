@@ -30,16 +30,25 @@
             return nx.get(target, inPath, inDefault);
           },
           sync: function (inPath) {
-            var hasPath = typeof inPath === UNDEF;
+            var hasPath = typeof inPath !== UNDEF;
             var hasCache = hasPath && typeof FN_CACHE[inPath] === FUNC;
             var fn;
             if (hasCache) {
               fn = FN_CACHE[inPath];
             } else {
               fn = FN_CACHE[inPath] = function (inEvent) {
-                var path = hasPath ? nxGet2get(inEvent, NAME_PATHS, 'value') : inPath;
-                var value = options.eventValue(inEvent);
-                nx.set(state, path, value);
+                var path = hasPath ? inPath : nxGet2get(inEvent, NAME_PATHS, 'value');
+                var dstPaths = Array.isArray(path) ? path : path.split(',');
+                if (dstPaths.length === 0) return;
+                if (dstPaths.length === 1) {
+                  var value = options.eventValue(inEvent);
+                  nx.set(state, path, value);
+                } else {
+                  dstPaths.forEach(function (dstPath) {
+                    var subv = nx.get(value, dstPath);
+                    nx.set(state, dstPath, subv);
+                  });
+                }
               };
             }
             return fn;
