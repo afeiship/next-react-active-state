@@ -39,9 +39,9 @@
               fn = FN_CACHE[inPath] = function (inEvent) {
                 var path = hasPath ? inPath : nxGet2get(inEvent, NAME_PATHS, 'value');
                 var dstPaths = Array.isArray(path) ? path : path.split(',');
+                var value = options.eventValue(inEvent);
                 if (dstPaths.length === 0) return;
                 if (dstPaths.length === 1) {
-                  var value = options.eventValue(inEvent);
                   nx.set(state, path, value);
                 } else {
                   dstPaths.forEach(function (dstPath) {
